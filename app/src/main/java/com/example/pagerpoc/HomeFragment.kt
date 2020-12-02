@@ -17,8 +17,8 @@ class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeFragemtBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeFragemtBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -50,7 +50,12 @@ class HomeFragment : Fragment() {
         binding.vpSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                binding.vpFragment.setCurrentItem(position,true)
+                binding.vpFragment.setCurrentItem(position,false)
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                binding.vpFragment.alpha = 1f - positionOffset
             }
         })
     }
