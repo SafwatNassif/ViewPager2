@@ -48,7 +48,10 @@ class HomeFragment : Fragment() {
         }
         binding.vpSlider.setPageTransformer(compositePageTransformer)
         binding.vpSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                binding.vpFragment.setCurrentItem(position,true)
+            }
         })
     }
 
